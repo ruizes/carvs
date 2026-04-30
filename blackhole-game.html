@@ -498,8 +498,11 @@
             
             score += obj.score;
             
-            const growthFactor = obj.score / 1000;
-            blackhole.radius = Math.min(blackhole.maxRadius, blackhole.radius + growthFactor * 5);
+            const baseGrowth = obj.size * 0.25;
+            const relativeBonus = (obj.size / blackhole.radius) * 8;
+            const totalGrowth = baseGrowth + relativeBonus;
+            
+            blackhole.radius = Math.min(blackhole.maxRadius, blackhole.radius + totalGrowth);
             
             objects.splice(index, 1);
             
